@@ -177,3 +177,37 @@ Stopping containers and cleaning up
 ```bash
 sudo docker-compose down --volumes
 ```
+## 🛠️ My Improvements & Customizations
+
+This repository was originally inspired by an open-source template  
+(https://github.com/fcakyon/flask-redis-docker – MIT Licensed).  
+I adapted, expanded, and restructured the project to create a more complete  
+and realistic **DevOps learning environment**, suitable for multi-container  
+architecture practice and portfolio use.
+
+Below is a list of the improvements I made:
+
+### ✔ Docker Compose Architecture
+- Rewrote the `docker-compose.yml` with a cleaner and more modular structure.
+- Added **restart policies** for reliability (`restart: unless-stopped`).
+- Added **service healthchecks** for Redis to ensure proper startup sequence.
+- Introduced a dedicated **bridge network** (`app-net`) for secure internal communication.
+- Added a persistent **named volume** (`redis-data`) to store Redis state.
+
+### ✔ Application Runtime Improvements
+- Updated the server to run via **Gunicorn** with:
+  - 4 worker processes
+  - 120-second timeout
+  - 0.0.0.0 binding for container compatibility
+- Clean separation of services:
+  - `server` (Flask + Gunicorn)
+  - `worker` (RQ worker)
+  - `dashboard` (RQ dashboard)
+  - `redis` (queue store)
+
+### ✔ Queue & Worker Enhancements
+- Improved RQ worker configuration to use a clean Redis URL format.
+- Added optional scaling support:
+  ```bash
+  docker compose up -d --scale worker=3
+
