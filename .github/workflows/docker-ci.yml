@@ -24,7 +24,8 @@ jobs:
       - name: Docker image'i build et ve pushla
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./project
+          file: ./project/Dockerfile
           push: true
           tags: |
             AstroNodes/redis-demo:latest
