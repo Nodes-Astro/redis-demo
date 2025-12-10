@@ -28,5 +28,5 @@ jobs:
           file: ./project/Dockerfile
           push: true
           tags: |
-            AstroNodes/redis-demo:latest
-            AstroNodes/redis-demo:${{ github.sha }}
+            docker.io/astronodes/redis-demo:latest
+            docker.io/astronodes/redis-demo:${{ github.sha }}
