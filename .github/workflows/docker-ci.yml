@@ -5,8 +5,31 @@ on:
     branches: [ "main" ]
 
 jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Reponun kodlarını indir
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Bağımlılıkları yükle (opsiyonel)
+        run: |
+          pip install --upgrade pip
+          if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+
+      - name: Basit test komutu
+        run: |
+          echo "Tests would run here (pytest, flake8, etc.)"
+          echo "Şimdilik sadece pipeline akışını gösteriyoruz."
+
   build-and-push:
     runs-on: ubuntu-latest
+    needs: lint-and-test   # önce lint-and-test başarılı olmalı
 
     steps:
       - name: Reponun kodlarını indir
