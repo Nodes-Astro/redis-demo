@@ -1,5 +1,7 @@
 # Flask-Redis-Docker Template
 
+[![First CI](https://github.com/Nodes-Astro/redis-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/Nodes-Astro/redis-demo/actions/workflows/ci.yml)
+
 This project ties together [Flask](http://flask.pocoo.org), [Redis](http://redis.io), [RQ (Redis Queue)](http://python-rq.org) and [Docker](http://docker.com) in a simple demo application. It can serve as template for other projects as well as an introduction on how to use Flask with RQ while managing it all with [docker-compose](http://docs.docker.com/compose).
 
 In the web application you can launch long running jobs which are put into a RQ task queue. From there a RQ worker picks it up and executes it. During execution the job reports back some progress information and  – if execution was successful – the job result.
